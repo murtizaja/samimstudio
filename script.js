@@ -12,7 +12,7 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// 2. مؤشر الماوس التفاعلي الدقيق
+// 2. مؤشر الماوس التفاعلي
 const cursor = document.getElementById('cursor');
 const cursorText = document.getElementById('cursor-text');
 
@@ -24,14 +24,14 @@ window.addEventListener('mousemove', (e) => {
     mouseY = e.clientY;
 });
 
-// تحريك المؤشر بسلاسة متناهية عبر GSAP
 gsap.ticker.add(() => {
     cursorX += (mouseX - cursorX) * 0.2;
     cursorY += (mouseY - cursorY) * 0.2;
-    cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+    if (cursor) {
+        cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%)`;
+    }
 });
 
-// تفاعل المؤشر مع الروابط والمشاريع
 document.querySelectorAll('[data-cursor]').forEach(el => {
     el.addEventListener('mouseenter', () => {
         const type = el.getAttribute('data-cursor');
@@ -49,7 +49,38 @@ document.querySelectorAll('[data-cursor]').forEach(el => {
     });
 });
 
-// 3. حركات دخول النصوص عبر GSAP عند التحميل
+// 3. تأثير الـ 3D Tilt والعمق البصري للشعار في الهيدر
+const logoWrap = document.getElementById('logo3d');
+const logoLayer = logoWrap ? logoWrap.querySelector('.logo-3d-layer') : null;
+const logoGlow = logoWrap ? logoWrap.querySelector('.logo-3d-glow') : null;
+
+if (logoWrap && logoLayer) {
+    logoWrap.addEventListener('mousemove', (e) => {
+        const rect = logoWrap.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        const rotX = -(y / (rect.height / 2)) * 25;
+        const rotY = (x / (rect.width / 2)) * 25;
+
+        logoLayer.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(24px) scale(1.08)`;
+        logoLayer.style.filter = `drop-shadow(${-rotY * 0.8}px ${rotX * 0.8 + 6}px 14px rgba(25, 213, 99, 0.35)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.7))`;
+
+        if (logoGlow) {
+            logoGlow.style.transform = `translate(${x * 0.4}px, ${y * 0.4}px) translateZ(-10px)`;
+        }
+    });
+
+    logoWrap.addEventListener('mouseleave', () => {
+        logoLayer.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0px) scale(1)';
+        logoLayer.style.filter = 'drop-shadow(0 4px 10px rgba(0, 0, 0, 0.4))';
+        if (logoGlow) {
+            logoGlow.style.transform = 'translate(0, 0) translateZ(-10px)';
+        }
+    });
+}
+
+// 4. حركات دخول النصوص عبر GSAP عند التحميل
 window.addEventListener('DOMContentLoaded', () => {
     gsap.from('.line-inner', {
         y: 100,
@@ -59,7 +90,7 @@ window.addEventListener('DOMContentLoaded', () => {
         ease: 'power4.out'
     });
 
-    gsap.from('.hero-bio, .scroll-indicator, .badge-tag', {
+    gsap.from('.slogan-visual-wrap, .hero-bio, .scroll-indicator, .badge-tag', {
         opacity: 0,
         y: 20,
         duration: 1,
@@ -69,7 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// 4. بيانات المشاريع الموسعة لدراسة الحالة (Case Studies)
+// 5. بيانات دراسات الحالة للمشاريع
 const projectsData = {
     "project-1": {
         title: "هوية روح وريحان المتكاملة",
@@ -110,7 +141,7 @@ const projectsData = {
     }
 };
 
-// 5. إدارة نافذة دراسة الحالة المنبثقة (Drawer)
+// 6. إدارة عارض دراسات الحالة المنبثق
 const drawer = document.getElementById('projectDrawer');
 const drawerClose = document.getElementById('drawerClose');
 const drawerContent = document.getElementById('drawerContent');
@@ -135,11 +166,30 @@ document.querySelectorAll('.project-row').forEach(row => {
         `;
 
         drawer.classList.add('open');
-        lenis.stop(); // إيقاف تمرير الصفحة الرئيسية مؤقتاً
+        lenis.stop();
     });
 });
 
-drawerClose.addEventListener('click', () => {
-    drawer.classList.remove('open');
-    lenis.start(); // استئناف التمرير
-});
+if (drawerClose) {
+    drawerClose.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        lenis.start();
+    });
+}
+
+// 7. نسخ الإيميل الثابت بنقرة زر
+const emailLink = document.getElementById('studioEmail');
+const copyBtn = document.getElementById('copyEmailBtn');
+const copyNotice = document.getElementById('copyNotice');
+
+if (copyBtn && emailLink) {
+    copyBtn.addEventListener('click', () => {
+        const emailToCopy = emailLink.textContent.replace(' ↗', '').trim();
+        navigator.clipboard.writeText(emailToCopy).then(() => {
+            copyNotice.classList.add('show');
+            setTimeout(() => {
+                copyNotice.classList.remove('show');
+            }, 2500);
+        });
+    });
+}

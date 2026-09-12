@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>أستوديو صَميم | Samim Studio</title>
+    <meta name="description" content="بوتيك استوديو إبداعي مستقل، نُعنى بصياغة وتطوير الهويات البصرية الاستراتيجية والأنظمة التيبوغرافية الفاخرة.">
     
-    <!-- خطوط راقية -->
+    <!-- أيقونة المتصفح -->
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- الخطوط -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     
-    <!-- ستايل الموقع -->
+    <!-- الأنماط والمكتبات -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- استيراد مكتبات الموشن والـ Smooth Scroll -->
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
@@ -27,60 +29,101 @@
 
     <!-- شريط التنقل العلوي -->
     <nav class="navbar">
-        <a href="#" class="brand" data-cursor="link">
-            <span class="brand-ar">أستوديو صَميم</span>
-            <span class="brand-en">SAMIM STUDIO</span>
+        <!-- حاوية الشعار التفاعلية 3D -->
+        <a href="#" class="brand logo-3d-wrap" id="logo3d" data-cursor="link">
+            <div class="logo-3d-glow"></div>
+            <img src="logo.svg" alt="أستوديو صَميم" class="site-logo logo-3d-layer">
         </a>
         <div class="nav-right">
             <span class="studio-status">متاح للمشاريع الجديدة 2026</span>
-            <a href="#contact" class="btn-primary" data-cursor="link">ابدأ محادثة</a>
+            <a href="https://wa.me/by.samim" target="_blank" class="btn-primary" data-cursor="link">ابدأ مشروعك ↗</a>
         </div>
     </nav>
 
-    <!-- الواجهة السينمائية Hero -->
+    <!-- الواجهة الرئيسية Hero -->
     <header class="hero-section">
         <div class="hero-top">
-            <span class="badge-tag">DESIGN & BRAND IDENTITY</span>
-            <span class="badge-tag">IRAQ / GLOBAL</span>
+            <span class="badge-tag">BOUTIQUE DESIGN STUDIO</span>
+            <span class="badge-tag">VISUAL IDENTITY & DIRECTION</span>
         </div>
+        
         <h1 class="hero-title">
             <span class="line"><span class="line-inner">نصيغ هويات بصرية</span></span>
             <span class="line"><span class="line-inner">تحمل ثقل المعنى،</span></span>
             <span class="line"><span class="line-inner accent-text">ودقة التطبيق.</span></span>
         </h1>
+
+        <!-- صورة السلوغن SVG المفرغة -->
+        <div class="slogan-visual-wrap">
+            <img src="slogan.svg" alt="شعار أستوديو صَميم" class="slogan-img">
+        </div>
+
         <div class="hero-footer">
             <p class="hero-bio">
-                أستوديو تصميم تجريبي ومستقل يعمل على تقاطع الثقافة، التايبوغرافي، وبناء الأنظمة البصرية الشاملة للعلامات الطموحة.
+                بوتيك استوديو إبداعي مستقل؛ نُعنى بصياغة وتطوير الهويات البصرية الشاملة، نبني للأفكار جسداً وللعلامات صوتاً استثنائياً يمتد بثقة بين الأصالة والحداثة.
             </p>
             <div class="scroll-indicator">
-                <span>تصفح المشاريع</span>
+                <span>تصفح الأعمال</span>
                 <div class="scroll-arrow">↓</div>
             </div>
         </div>
     </header>
 
-    <!-- شريط تيبوغرافي متحرك لا نهائي -->
-    <div class="marquee-wrap">
-        <div class="marquee-track">
-            <span>VISUAL IDENTITY • TYPOGRAPHY • PACKAGING • ART DIRECTION • BRAND STRATEGY • </span>
-            <span>VISUAL IDENTITY • TYPOGRAPHY • PACKAGING • ART DIRECTION • BRAND STRATEGY • </span>
+    <!-- شريط شعارات العملاء المتحرك بدون انقطاع -->
+    <div class="client-marquee-container">
+        <div class="marquee-title">
+            <span>وثقوا بنا</span>
+            <span class="dot">/</span>
+            <span class="en-label">TRUSTED BY</span>
+        </div>
+        <div class="marquee-viewport">
+            <div class="marquee-track">
+                <!-- الدفعة الأولى (13 شعار) -->
+                <div class="logo-item"><img src="logos/client-1.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-2.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-3.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-4.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-5.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-6.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-7.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-8.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-9.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-10.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-11.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-12.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-13.svg" alt="عميل"></div>
+
+                <!-- الدفعة الثانية لتأمين اتصال الحركة ومنع أي فراغ -->
+                <div class="logo-item"><img src="logos/client-1.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-2.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-3.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-4.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-5.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-6.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-7.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-8.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-9.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-10.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-11.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-12.svg" alt="عميل"></div>
+                <div class="logo-item"><img src="logos/client-13.svg" alt="عميل"></div>
+            </div>
         </div>
     </div>
 
-    <!-- شبكة عرض المشاريع التفاعلية -->
+    <!-- شبكة المشاريع التفاعلية -->
     <section class="works-section" id="works">
         <div class="section-head">
-            <h2 class="section-label">01 / أعمال مختارة</h2>
+            <h2 class="section-label">01 / مشاريع مختارة</h2>
             <span class="section-count">( 04 )</span>
         </div>
 
         <div class="projects-container">
-            <!-- مشروع 1 -->
             <article class="project-row" data-id="project-1" data-cursor="project">
                 <div class="row-num">01</div>
                 <div class="row-meta">
                     <h3 class="row-title">روح وريحان</h3>
-                    <span class="row-cat">هوية بصرية متكاملة، ضيافة ومطاعم</span>
+                    <span class="row-cat">هوية بصرية متكاملة، قطاع الضيافة والمطاعم</span>
                 </div>
                 <div class="row-year">2026</div>
                 <div class="row-preview">
@@ -88,12 +131,11 @@
                 </div>
             </article>
 
-            <!-- مشروع 2 -->
             <article class="project-row" data-id="project-2" data-cursor="project">
                 <div class="row-num">02</div>
                 <div class="row-meta">
                     <h3 class="row-title">قلادة الفضية</h3>
-                    <span class="row-cat">صياغة العلامة، تصميم التغليف، طباعة فاخرة</span>
+                    <span class="row-cat">صياغة العلامة، أنظمة التغليف، طباعة فاخرة</span>
                 </div>
                 <div class="row-year">2026</div>
                 <div class="row-preview">
@@ -101,12 +143,11 @@
                 </div>
             </article>
 
-            <!-- مشروع 3 -->
             <article class="project-row" data-id="project-3" data-cursor="project">
                 <div class="row-num">03</div>
                 <div class="row-meta">
                     <h3 class="row-title">صاحب ماركة</h3>
-                    <span class="row-cat">إعادة إحياء الهوية، نظام بصري، توجيه فني</span>
+                    <span class="row-cat">إعادة صياغة الهوية، توجيه فني وأزياء</span>
                 </div>
                 <div class="row-year">2025</div>
                 <div class="row-preview">
@@ -114,12 +155,11 @@
                 </div>
             </article>
 
-            <!-- مشروع 4 -->
             <article class="project-row" data-id="project-4" data-cursor="project">
                 <div class="row-num">04</div>
                 <div class="row-meta">
                     <h3 class="row-title">حاء نون</h3>
-                    <span class="row-cat">تصميم وتجليد دفاتر حرفية، مطبوعات خاصة</span>
+                    <span class="row-cat">تصميم وتجليد دفاتر حرفية، مطبوعات فاخرة</span>
                 </div>
                 <div class="row-year">2025</div>
                 <div class="row-preview">
@@ -129,13 +169,13 @@
         </div>
     </section>
 
-    <!-- فلسفة الاستوديو وقسم النص الكبير -->
+    <!-- تعريف الاستوديو والفلسفة -->
     <section class="manifesto-section">
         <div class="section-head">
-            <h2 class="section-label">02 / الفلسفة</h2>
+            <h2 class="section-label">02 / عن صَميم</h2>
         </div>
         <div class="manifesto-text">
-            التصميم الجيد ليس مجرد مظهر خارجي أنيق؛ بل هو <span class="highlight">هندسة تفكير متقنة</span>. نبدأ من الجذور الثقافية والتحليل العميق لصوت العلامة، لنصل إلى حلول بصرية حاسمة تدوم في الذاكرة.
+            نحن <span class="highlight">بوتيك استوديو إبداعي</span> مختص في هندسة وبناء الهويات البصرية الاستراتيجية. لا نصمم أشكالاً عابرة، بل نترجم جوهر العلامة إلى نظم تيبوغرافية وتطبيقات واقعية ذات حضور متزن، وملمس يرسخ في الوعي طويلاً.
         </div>
     </section>
 
@@ -143,30 +183,35 @@
     <footer class="footer-section" id="contact">
         <div class="footer-top">
             <span class="section-label">03 / تواصل مباشر</span>
-            <h2>لنبدأ عملاً استثنائياً.</h2>
-            <a href="mailto:Murtiza@samimstudio.com" class="big-email" data-cursor="link">Murtiza@samimstudio.com ↗</a>
+            <h2>لنبدأ بتجسيد رؤيتك القادمة.</h2>
+            
+            <div class="email-interactive-box" data-cursor="link">
+                <a href="mailto:hello@samimstudio.com" id="studioEmail" class="big-email">hello@samimstudio.com ↗</a>
+                <div class="email-tools">
+                    <button type="button" id="copyEmailBtn" class="email-chip">نسخ الإيميل</button>
+                    <span id="copyNotice" class="copy-alert">تم النسخ إلى الحافظة!</span>
+                </div>
+            </div>
         </div>
+
         <div class="footer-bar">
             <div class="footer-links">
-                <a href="https://instagram.com" target="_blank" data-cursor="link">Instagram</a>
-                <a href="https://behance.net" target="_blank" data-cursor="link">Behance</a>
-                <a href="https://t.me" target="_blank" data-cursor="link">Telegram</a>
+                <a href="https://t.me/samimstudio" target="_blank" data-cursor="link">Telegram (@samimstudio)</a>
+                <a href="https://instagram.com/by.samim" target="_blank" data-cursor="link">Instagram (@by.samim)</a>
+                <a href="https://wa.me/by.samim" target="_blank" data-cursor="link">WhatsApp (@by.samim)</a>
             </div>
             <span class="copy">&copy; 2026 SAMIM STUDIO. ALL RIGHTS RESERVED.</span>
         </div>
     </footer>
 
-    <!-- نافذة عرض المشروع السينمائية (Case Study Drawer) -->
+    <!-- عارض دراسة الحالة (Drawer) -->
     <div class="project-drawer" id="projectDrawer">
         <div class="drawer-header">
             <button class="drawer-close" id="drawerClose" data-cursor="link">إغلاق ✕</button>
         </div>
-        <div class="drawer-scroll" id="drawerContent">
-            <!-- يمتلئ ديناميكياً بالجافاسكربت -->
-        </div>
+        <div class="drawer-scroll" id="drawerContent"></div>
     </div>
 
-    <!-- سكربت التحكم والموشن -->
     <script src="script.js"></script>
 </body>
 </html>

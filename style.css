@@ -14,7 +14,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none;
 }
 
 body {
@@ -25,6 +24,9 @@ body {
     direction: rtl;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    /* تثبيت عرض الكمبيوتر دائماً */
+    width: 100%;
+    min-width: 1280px;
 }
 
 body.drawer-active,
@@ -74,6 +76,7 @@ body.intro-active {
     backdrop-filter: blur(8px);
     transition: all 0.2s ease;
     z-index: 10;
+    cursor: pointer;
 }
 
 .intro-skip:hover {
@@ -408,7 +411,7 @@ body.intro-active {
     100% { transform: translateX(50%); }
 }
 
-/* شبكة المشاريع */
+/* شبكة المشاريع (عرض عمودين كاملين دائماً) */
 .works-section {
     padding: 7rem 6%;
 }
@@ -541,7 +544,7 @@ body.intro-active {
     font-weight: 300;
 }
 
-/* بيان الأستوديو */
+/* بيان وفلسفة الأستوديو */
 .manifesto-section {
     padding: 8rem 6%;
     border-top: 1px solid var(--border);
@@ -560,7 +563,7 @@ body.intro-active {
     font-weight: 600;
 }
 
-/* الفوتر */
+/* الفوتر والتواصل */
 .footer-section {
     padding: 8rem 6% 3rem;
     border-top: 1px solid var(--border);
@@ -605,6 +608,7 @@ body.intro-active {
     font-size: 0.8rem;
     font-family: var(--font-main);
     transition: all 0.2s ease;
+    cursor: pointer;
 }
 
 .email-chip:hover {
@@ -696,6 +700,7 @@ body.intro-active {
     font-family: var(--font-main);
     font-size: 0.95rem;
     transition: background 0.2s, border-color 0.2s, color 0.2s;
+    cursor: pointer;
 }
 
 .drawer-close:hover {
@@ -738,21 +743,4 @@ body.intro-active {
     border-radius: 12px;
     border: 1px solid var(--border);
     display: block;
-}
-
-@media (max-width: 850px) {
-    * { cursor: auto; }
-    .custom-cursor { display: none; }
-    .hero-title { font-size: 1.7rem; line-height: 1.4; }
-    .slogan-img { max-width: 100%; max-height: 90px; }
-    .client-marquee-container { flex-direction: column; align-items: flex-start; }
-    .marquee-title { border-left: none; border-bottom: 1px solid var(--border); width: 100%; }
-    .projects-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .card-media img { filter: grayscale(0%) brightness(1); }
-    .manifesto-text { font-size: 1.6rem; }
-    .footer-top h2 { font-size: 2.2rem; }
-    .big-email { font-size: 1.5rem; }
-    .footer-bar { flex-direction: column; gap: 1.5rem; }
-    .drawer-scroll { padding: 3rem 6% 6rem; }
-    .drawer-hero h1 { font-size: 2rem; }
 }

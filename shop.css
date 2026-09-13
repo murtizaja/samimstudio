@@ -14,7 +14,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none;
 }
 
 body.shop-body {
@@ -25,6 +24,9 @@ body.shop-body {
     direction: rtl;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    /* تثبيت عرض الكمبيوتر دائماً */
+    width: 100%;
+    min-width: 1280px;
 }
 
 /* مؤشر الماوس */
@@ -173,7 +175,7 @@ body.shop-body {
     font-size: 0.95rem;
 }
 
-/* شبكة المنتجات الحرفية */
+/* شبكة المنتجات الحرفية (3 أعمدة دائماً) */
 .boho-shelves-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -307,9 +309,3 @@ body.shop-body {
     color: var(--muted-linen); text-decoration: none; transition: color 0.2s ease;
 }
 .shop-footer-bar .links a:hover { color: var(--accent-brass); }
-
-@media (max-width: 900px) {
-    .shop-main-title { font-size: 2.2rem; }
-    .boho-shelves-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    .shop-footer-bar { flex-direction: column; gap: 1.5rem; }
-}

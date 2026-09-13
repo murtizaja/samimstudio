@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أثير صَميم | Samim Broadcast & Essays</title>
+    <meta name="description" content="البث البصري الحي والمقالات الفكرية لأستوديو صَميم، من طاولات العمل إلى الأثير.">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Syne:wght@700;800&family=VT323&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="broadcast.css">
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="broadcast-body">
+
+    <div class="custom-cursor" id="cursor">
+        <span class="cursor-text" id="cursor-text">بث</span>
+    </div>
+
+    <!-- شريط النافبار الكرزي والأوف وايت -->
+    <nav class="cherry-navbar">
+        <a href="index.html" class="brand" data-cursor="link">
+            <img src="logo.svg" alt="أستوديو صَميم" class="site-logo">
+        </a>
+        <div class="nav-right">
+            <a href="index.html" class="cherry-nav-link" data-cursor="link">← الأستوديو</a>
+            <a href="shop.html" class="cherry-nav-link" data-cursor="link">دُكّان صَميم ↗</a>
+            <a href="https://wa.me/by.samim" target="_blank" class="btn-cherry-action" data-cursor="link">تواصل عبر الأثير ↗</a>
+        </div>
+    </nav>
+
+    <header class="broadcast-hero">
+        <div class="broadcast-badge">CHERRY ON AIR // 19.56 MHZ</div>
+        <h1 class="broadcast-title">أثير صَميم</h1>
+        <p class="broadcast-intro">
+            نافذة البث الحي لمقالات، تأملات، وتجارب استوديو صَميم حول فلسفة الهويات، التيبوغرافيا المعاصرة، وثقل المعنى.
+        </p>
+    </header>
+
+    <!-- مجسم التلفاز التناظري CRT بتدرجات الكرزي والأوف وايت -->
+    <main class="crt-broadcast-zone">
+        <div class="vintage-crt-chassis">
+            
+            <div class="crt-housing-grid">
+                
+                <!-- إطار الشاشة مع خطوط المسح الضوئي والموشن الكودي الحي -->
+                <div class="crt-monitor-frame">
+                    <div class="screen-glass" id="screenGlass">
+                        
+                        <div class="crt-scanlines"></div>
+                        <div class="crt-cherry-glow"></div>
+                        <div class="crt-static-glitch" id="glitchOverlay"></div>
+
+                        <!-- شريط التردد والمعلومات العلوية -->
+                        <div class="crt-osd-top">
+                            <div class="live-pill">
+                                <span class="cherry-dot"></span>
+                                <span>BROADCAST SIGNAL: ACTIVE</span>
+                            </div>
+                            <div class="ch-code-display" id="chCode">CHANNEL 01 / ON AIR</div>
+                        </div>
+
+                        <!-- المحتوى البصري المتحرك المباشر داخل الشاشة (Canvas حي وموشن دائم) -->
+                        <div class="canvas-visual-wrapper">
+                            <canvas id="liveMotionCanvas"></canvas>
+                        </div>
+
+                        <!-- بطاقة المقال التفاعلية أسفل الشاشة (تفتح المقال عند النقر) -->
+                        <div class="interactive-essay-card" id="essayCardTrigger" data-cursor="link">
+                            <div class="essay-card-inner">
+                                <div class="essay-meta-row">
+                                    <span class="essay-tag" id="essayTag">مقال وتأملات • القناة 01</span>
+                                    <span class="click-hint">اضغط لقراءة المقال بالكامل ↗</span>
+                                </div>
+                                <h3 id="essayTitle">تفكيك الأنظمة البصرية: حينما يصبح الشكل جسداً للمعنى</h3>
+                                <p id="essayBrief">عن الفرق بين الشعار العابر، والنظام البصري الرصين الذي يمتلك صوتاً ويفرض احترامه في السوق.</p>
+                            </div>
+                        </div>
+
+                        <div class="crt-osd-bottom">
+                            <span>SAMIM ESSAY FEED // FREQ: 98.4 MHZ // OFF-WHITE CHERRY BROADCAST</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- لوحة التحكم الجانبية بالتلفاز -->
+                <div class="crt-tuner-panel">
+                    <div class="speaker-slits">
+                        <span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+
+                    <div class="tuner-selector">
+                        <span class="panel-label">SELECT CHANNEL</span>
+                        <div class="tuner-buttons">
+                            <button class="ch-btn active" data-channel="1" data-cursor="link">CH 01</button>
+                            <button class="ch-btn" data-channel="2" data-cursor="link">CH 02</button>
+                            <button class="ch-btn" data-channel="3" data-cursor="link">CH 03</button>
+                        </div>
+                    </div>
+
+                    <div class="tuner-knobs">
+                        <div class="knob-unit">
+                            <div class="rotary-knob" id="tuneKnob"></div>
+                            <span class="knob-label">TUNE</span>
+                        </div>
+                        <div class="knob-unit">
+                            <div class="rotary-knob power-knob" id="powerSwitch" data-cursor="link"></div>
+                            <span class="knob-label">POWER</span>
+                        </div>
+                    </div>
+
+                    <div class="crt-brand-stamp">SAMIM-CRT CHERRY EDITION</div>
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- نافذة قراءة المقال الكامل المنبثقة (Drawer) -->
+    <div class="essay-reader-drawer" id="essayDrawer">
+        <div class="drawer-top-bar">
+            <span class="drawer-ch-info" id="drawerChInfo">القناة 01 / مقال الأثير</span>
+            <button class="drawer-close-btn" id="drawerCloseBtn" data-cursor="link">إغلاق المقال ✕</button>
+        </div>
+        <div class="drawer-article-body" id="drawerArticleBody" data-lenis-prevent>
+            <!-- يتم حقن المقال ديناميكياً بناءً على القناة النشطة -->
+        </div>
+    </div>
+
+    <!-- فوتر الأثير -->
+    <footer class="cherry-footer">
+        <div class="footer-bar">
+            <span>&copy; 2026 أثير صَميم • مقالات وبث بصري مستقل</span>
+            <div class="links">
+                <a href="index.html" data-cursor="link">الرئيسية</a>
+                <a href="shop.html" data-cursor="link">دُكّان صَميم</a>
+                <a href="https://instagram.com/by.samim" target="_blank" data-cursor="link">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="broadcast.js"></script>
+</body>
+</html>

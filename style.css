@@ -1,11 +1,11 @@
 :root {
     --bg: #090a0c;
-    --card-bg: #121318;
+    --card-bg: #111317;
     --border: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(255, 255, 255, 0.25);
+    --border-hover: rgba(255, 255, 255, 0.22);
     --text: #f0f2f5;
     --muted: #838896;
-    --accent: #19d563; /* لون هوية صَميم المعتمد */
+    --accent: #19d563;
     --font-main: 'IBM Plex Sans Arabic', sans-serif;
     --font-en: 'Syne', sans-serif;
 }
@@ -27,6 +27,60 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+body.drawer-active,
+body.intro-active {
+    overflow: hidden;
+}
+
+/* شاشة الأنترو للجزيئات المتشكلة */
+.intro-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #060709;
+    z-index: 1000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
+}
+
+.intro-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#introCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.intro-skip {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 3rem;
+    font-size: 0.8rem;
+    font-family: var(--font-en);
+    letter-spacing: 1.5px;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    padding: 0.4rem 1rem;
+    border-radius: 99px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.intro-skip:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
 /* مؤشر الماوس التفاعلي */
 .custom-cursor {
     position: fixed;
@@ -37,7 +91,7 @@ body {
     background: #fff;
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 9999999;
     transform: translate(-50%, -50%);
     transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
                 height 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
@@ -50,7 +104,7 @@ body {
 .cursor-text {
     display: none;
     font-size: 11px;
-    color: #000;
+    color: #050607;
     font-weight: 700;
 }
 
@@ -61,8 +115,8 @@ body {
 }
 
 .custom-cursor.active-project {
-    width: 85px;
-    height: 85px;
+    width: 80px;
+    height: 80px;
     background: var(--accent);
 }
 
@@ -70,7 +124,7 @@ body {
     display: block;
 }
 
-/* شريط التنقل */
+/* شريط التنقل العلوي */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -90,7 +144,6 @@ body {
     align-items: center;
 }
 
-/* الحاوية ثلاثية الأبعاد للشعار 3D Tilt */
 .logo-3d-wrap {
     position: relative;
     display: inline-flex;
@@ -130,7 +183,7 @@ body {
 .nav-right {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 1.8rem;
 }
 
 .studio-status {
@@ -138,15 +191,35 @@ body {
     color: var(--muted);
 }
 
+.nav-sub-link {
+    color: var(--muted) !important;
+    text-decoration: none !important;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: color 0.25s ease;
+    white-space: nowrap;
+    border-bottom: 1px solid transparent;
+}
+
+.nav-sub-link:visited {
+    color: var(--muted) !important;
+}
+
+.nav-sub-link:hover {
+    color: var(--accent) !important;
+    border-color: var(--accent);
+}
+
 .btn-primary {
     background: var(--accent);
-    color: #050607;
-    text-decoration: none;
+    color: #050607 !important;
+    text-decoration: none !important;
     padding: 0.6rem 1.4rem;
     border-radius: 99px;
     font-size: 0.85rem;
     font-weight: 600;
-    transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
 }
 
 .btn-primary:hover {
@@ -200,7 +273,6 @@ body {
     color: var(--accent);
 }
 
-/* حاوية السلوغن العريضة */
 .slogan-visual-wrap {
     width: 100%;
     margin: 1.5rem 0 3.5rem;
@@ -243,7 +315,7 @@ body {
     gap: 0.8rem;
 }
 
-/* شريط شعارات العملاء المتحرك (وثقوا بنا) */
+/* شريط العملاء */
 .client-marquee-container {
     display: flex;
     align-items: center;
@@ -336,9 +408,9 @@ body {
     100% { transform: translateX(50%); }
 }
 
-/* قسم المشاريع التفاعلية */
+/* شبكة المشاريع */
 .works-section {
-    padding: 6rem 6%;
+    padding: 7rem 6%;
 }
 
 .section-head {
@@ -346,7 +418,7 @@ body {
     justify-content: space-between;
     border-bottom: 1px solid var(--border);
     padding-bottom: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 3.5rem;
 }
 
 .section-label {
@@ -357,81 +429,119 @@ body {
     text-transform: uppercase;
 }
 
-.project-row {
-    position: relative;
+.section-count {
+    font-family: var(--font-en);
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+.projects-grid {
     display: grid;
-    grid-template-columns: 80px 1fr 100px;
-    align-items: center;
-    padding: 3rem 0;
-    border-bottom: 1px solid var(--border);
-    transition: padding 0.3s ease, border-color 0.3s ease;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3.5rem 2.5rem;
 }
 
-.project-row:hover {
-    border-color: var(--border-hover);
-    padding: 3.5rem 1rem;
+.project-card {
+    background: transparent;
+    border-radius: 14px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.row-num {
-    font-family: var(--font-en);
-    font-size: 1.1rem;
-    color: var(--muted);
-}
-
-.row-title {
-    font-size: 2.8vw;
-    font-weight: 600;
-    margin-bottom: 0.3rem;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-
-.project-row:hover .row-title {
-    transform: translateX(-15px);
-    color: var(--accent);
-}
-
-.row-cat {
-    color: var(--muted);
-    font-size: 1rem;
-}
-
-.row-year {
-    font-family: var(--font-en);
-    color: var(--muted);
-    font-size: 1rem;
-    text-align: left;
-}
-
-/* صورة العرض العائمة عند المرور بالماوس */
-.row-preview {
-    position: absolute;
-    left: 20%;
-    top: 50%;
-    width: 320px;
-    height: 200px;
-    border-radius: 8px;
+.card-media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: 12px;
     overflow: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(-50%, -50%) scale(0.85);
-    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 10;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    background: #0d0f12;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.row-preview img {
+.card-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: grayscale(100%) brightness(0.75) contrast(1.08);
+    transform: scale(1.01);
+    transition: filter 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    display: block;
 }
 
-.project-row:hover .row-preview {
+.card-overlay-badge {
+    position: absolute;
+    top: 1.2rem;
+    left: 1.2rem;
+    background: rgba(9, 10, 12, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 99px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .card-media {
+    transform: translateY(-12px);
+    border-color: rgba(25, 213, 99, 0.45);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 35px rgba(25, 213, 99, 0.15);
+}
+
+.project-card:hover .card-media img {
+    filter: grayscale(0%) brightness(1) contrast(1);
+    transform: scale(1.05);
+}
+
+.project-card:hover .card-overlay-badge {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translateY(0);
+    border-color: var(--accent);
+    color: var(--accent);
 }
 
-/* بيان وفلسفة الأستوديو */
+.card-info {
+    padding: 1.4rem 0.4rem 0.5rem;
+}
+
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.card-num, .card-year {
+    font-family: var(--font-en);
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.card-title {
+    font-size: 1.65rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    transition: color 0.3s ease;
+}
+
+.project-card:hover .card-title {
+    color: var(--accent);
+}
+
+.card-cat {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+}
+
+/* بيان الأستوديو */
 .manifesto-section {
     padding: 8rem 6%;
     border-top: 1px solid var(--border);
@@ -450,7 +560,7 @@ body {
     font-weight: 600;
 }
 
-/* التذييل والتواصل */
+/* الفوتر */
 .footer-section {
     padding: 8rem 6% 3rem;
     border-top: 1px solid var(--border);
@@ -545,7 +655,7 @@ body {
     color: #555;
 }
 
-/* عارض دراسة الحالة المنبثق Case Study Drawer */
+/* النافذة المنبثقة Case Study Drawer */
 .project-drawer {
     position: fixed;
     top: 0;
@@ -556,7 +666,8 @@ body {
     z-index: 10000;
     transform: translateY(100%);
     transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-drawer.open {
@@ -564,10 +675,16 @@ body {
 }
 
 .drawer-header {
-    padding: 2rem 6%;
+    flex-shrink: 0;
+    height: 80px;
+    padding: 0 6%;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
     border-bottom: 1px solid var(--border);
+    background: rgba(7, 8, 10, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 10;
 }
 
 .drawer-close {
@@ -588,18 +705,21 @@ body {
 }
 
 .drawer-scroll {
-    height: calc(100vh - 90px);
+    flex: 1;
     overflow-y: auto;
-    padding: 5rem 10% 8rem;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    padding: 4rem 10% 8rem;
 }
 
 .drawer-hero h1 {
     font-size: 4vw;
-    margin-bottom: 1rem;
+    margin: 0.8rem 0 1.2rem;
 }
 
 .drawer-hero p {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     color: var(--muted);
     max-width: 800px;
     line-height: 1.8;
@@ -614,11 +734,12 @@ body {
 
 .drawer-media-flow img {
     width: 100%;
+    height: auto;
     border-radius: 12px;
     border: 1px solid var(--border);
+    display: block;
 }
 
-/* تجاوب الشاشات الصغيرة للموبايل */
 @media (max-width: 850px) {
     * { cursor: auto; }
     .custom-cursor { display: none; }
@@ -626,11 +747,12 @@ body {
     .slogan-img { max-width: 100%; max-height: 90px; }
     .client-marquee-container { flex-direction: column; align-items: flex-start; }
     .marquee-title { border-left: none; border-bottom: 1px solid var(--border); width: 100%; }
-    .project-row { grid-template-columns: 40px 1fr; gap: 1rem; }
-    .row-year, .row-preview { display: none; }
-    .row-title { font-size: 1.6rem; }
+    .projects-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .card-media img { filter: grayscale(0%) brightness(1); }
     .manifesto-text { font-size: 1.6rem; }
     .footer-top h2 { font-size: 2.2rem; }
     .big-email { font-size: 1.5rem; }
     .footer-bar { flex-direction: column; gap: 1.5rem; }
+    .drawer-scroll { padding: 3rem 6% 6rem; }
+    .drawer-hero h1 { font-size: 2rem; }
 }

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دُكّان صَميم | Samim Boutique Store</title>
+    <meta name="description" content="إصدارات ومطبوعات صَميم الحرفية، دفاتر بتجليد يدوي ومقتنيات العلامة.">
+    
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="shop.css">
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="shop-body">
+
+    <div class="custom-cursor" id="cursor">
+        <span class="cursor-text" id="cursor-text">فحص</span>
+    </div>
+
+    <!-- شريط تنقل الدكان -->
+    <nav class="shop-navbar">
+        <a href="index.html" class="brand" data-cursor="link">
+            <img src="logo.svg" alt="أستوديو صَميم" class="site-logo">
+        </a>
+        <div class="nav-right">
+            <a href="index.html" class="shop-nav-link" data-cursor="link">← الأستوديو</a>
+            <a href="broadcast.html" class="shop-nav-link" data-cursor="link">أثير صَميم ↗</a>
+            <a href="https://wa.me/by.samim" target="_blank" class="btn-shop-order" data-cursor="link">حجز مسبق ↗</a>
+        </div>
+    </nav>
+
+    <!-- واجهة الدكان الرئيسية -->
+    <header class="shop-header">
+        <div class="shop-pill-tag">BOHO & ARTISANAL EDITIONS</div>
+        <h1 class="shop-main-title">دُكّان صَميم للعاديات</h1>
+        <p class="shop-sub">
+            مساحة حرفية مكرسة للمطبوعات الورقية الفاخرة، دفاتر الملاحظات ذات الحياكة المكشوفة، ومقتنيات التصميم ذات الأثر الملموس.
+        </p>
+    </header>
+
+    <!-- واجهة الدكان ومجسم الرفوف -->
+    <main class="shop-showcase-container">
+        
+        <!-- لافتة الدكان الخشبية المعتقة بلون التيراكوتا -->
+        <div class="storefront-plaque">
+            <div class="plaque-rivet tl"></div>
+            <div class="plaque-rivet tr"></div>
+            <div class="plaque-rivet bl"></div>
+            <div class="plaque-rivet br"></div>
+            <span class="plaque-est">EST. 2026 • SAMIM EDITIONS</span>
+            <h2>دُكّان صَميم للمقتنيات</h2>
+            <p>إصدارات محدودة مرقمة يدوياً • ورق قطني • حياكة إبرة يدوية</p>
+        </div>
+
+        <!-- رفوف عرض المنتجات -->
+        <div class="boho-shelves-grid">
+            
+            <!-- منتج 1 -->
+            <article class="artisan-card" data-cursor="project">
+                <div class="artisan-media">
+                    <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=800&q=85" alt="دفتر صَميم كعب مكشوف">
+                    <div class="kraft-badge">
+                        <span class="edition-no">إصدار 01 / 50</span>
+                        <span class="price-val">25,000 د.ع</span>
+                    </div>
+                </div>
+                <div class="artisan-details">
+                    <span class="category-tag">دفاتر حرفية</span>
+                    <h3>دفتر صَميم • كعب مكشوف</h3>
+                    <p>خياطة يدوية بارزة ومكشوفة، ورق قطني إيطالي 120gsm مناسب للتحبير والرسم، غلاف تيراكوتا بختم بارز.</p>
+                    <a href="https://wa.me/by.samim?text=مرحباً،+أود+اقتناء+دفتر+صَميم+الكعب+المكشوف" target="_blank" class="btn-acquire" data-cursor="link">اقتناء القطعة عبر واتساب ↗</a>
+                </div>
+            </article>
+
+            <!-- منتج 2 -->
+            <article class="artisan-card" data-cursor="project">
+                <div class="artisan-media">
+                    <img src="https://images.unsplash.com/photo-1585336261026-c56a1bfa5468?auto=format&fit=crop&w=800&q=85" alt="طقم الهندسة المكتبي">
+                    <div class="kraft-badge">
+                        <span class="edition-no">إصدار استوديو</span>
+                        <span class="price-val">35,000 د.ع</span>
+                    </div>
+                </div>
+                <div class="artisan-details">
+                    <span class="category-tag">أدوات مكتبية</span>
+                    <h3>طقم مسطرة الشبكات الهندسية</h3>
+                    <p>ألمنيوم مفرغ بالليزر مع نسب الشبكة التيبوغرافية الخاصة بالأستوديو، في علبة كرتون مقوى بلون الكرافت الطبيعي.</p>
+                    <a href="https://wa.me/by.samim?text=مرحباً،+أود+طلب+طقم+النسب+الهندسية" target="_blank" class="btn-acquire" data-cursor="link">اقتناء القطعة عبر واتساب ↗</a>
+                </div>
+            </article>
+
+            <!-- منتج 3 -->
+            <article class="artisan-card" data-cursor="project">
+                <div class="artisan-media">
+                    <img src="https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=85" alt="بوستر سلك سكرين">
+                    <div class="kraft-badge">
+                        <span class="edition-no">مطبوعة يدوية 12/30</span>
+                        <span class="price-val">18,000 د.ع</span>
+                    </div>
+                </div>
+                <div class="artisan-details">
+                    <span class="category-tag">مطبوعات فنية</span>
+                    <h3>بوستر «لكل علامة صَميم»</h3>
+                    <p>طباعة يدوية بتقنية السلك سكرين على ورق قطني خشن مائل للبيج 320gsm، مع بصمة الختم الجاف للأستوديو.</p>
+                    <a href="https://wa.me/by.samim?text=مرحباً،+أود+طلب+بوستر+صَميم+المحدود" target="_blank" class="btn-acquire" data-cursor="link">اقتناء القطعة عبر واتساب ↗</a>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="shop-artisan-promise">
+            <p>🌿 جميع القطع تُصنع بحرفية يدوية وبكميات محدودة، ويُرفق مع كل طلب بطاقة شكر شخصية برقم النسخة التسلسلي.</p>
+        </div>
+    </main>
+
+    <footer class="shop-footer">
+        <div class="shop-footer-bar">
+            <span>&copy; 2026 دُكّان صَميم • SAMIM STUDIO EDITIONS</span>
+            <div class="links">
+                <a href="index.html" data-cursor="link">الرئيسية</a>
+                <a href="broadcast.html" data-cursor="link">أثير صَميم</a>
+                <a href="https://wa.me/by.samim" target="_blank" data-cursor="link">واتساب الطلبات</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- استدعاء ملف الجافا سكربت الخارجي -->
+    <script src="shop.js"></script>
+</body>
+</html>

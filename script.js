@@ -1,4 +1,4 @@
-// 1. تفعيل النزول السلس والفاخر (Lenis Smooth Scroll)
+// 1. تفعيل السكرول السلس Lenis
 const lenis = new Lenis({
     duration: 1.4,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -15,7 +15,6 @@ requestAnimationFrame(raf);
 // 2. مؤشر الماوس التفاعلي
 const cursor = document.getElementById('cursor');
 const cursorText = document.getElementById('cursor-text');
-
 let mouseX = 0, mouseY = 0;
 let cursorX = 0, cursorY = 0;
 
@@ -32,24 +31,27 @@ gsap.ticker.add(() => {
     }
 });
 
-document.querySelectorAll('[data-cursor]').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        const type = el.getAttribute('data-cursor');
-        if (type === 'project') {
-            cursor.classList.add('active-project');
-            cursorText.style.display = 'block';
-        } else {
-            cursor.classList.add('active-hover');
-        }
-    });
+function attachCursorEvents() {
+    document.querySelectorAll('[data-cursor]').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            const type = el.getAttribute('data-cursor');
+            if (type === 'project') {
+                cursor.classList.add('active-project');
+                cursorText.style.display = 'block';
+            } else {
+                cursor.classList.add('active-hover');
+            }
+        });
 
-    el.addEventListener('mouseleave', () => {
-        cursor.classList.remove('active-project', 'active-hover');
-        cursorText.style.display = 'none';
+        el.addEventListener('mouseleave', () => {
+            cursor.classList.remove('active-project', 'active-hover');
+            cursorText.style.display = 'none';
+        });
     });
-});
+}
+attachCursorEvents();
 
-// 3. تأثير الـ 3D Tilt والعمق البصري للشعار في الهيدر
+// 3. تأثير الـ 3D Tilt للشعار
 const logoWrap = document.getElementById('logo3d');
 const logoLayer = logoWrap ? logoWrap.querySelector('.logo-3d-layer') : null;
 const logoGlow = logoWrap ? logoWrap.querySelector('.logo-3d-glow') : null;
@@ -80,10 +82,149 @@ if (logoWrap && logoLayer) {
     });
 }
 
-// 4. حركات دخول النصوص عبر GSAP عند التحميل
-window.addEventListener('DOMContentLoaded', () => {
+// 4. محرك تشكل الجزيئات لأنترو "صَميم ستوديو" (Particle Morphing Canvas)
+const introOverlay = document.getElementById('introOverlay');
+const introCanvas = document.getElementById('introCanvas');
+const introSkip = document.getElementById('introSkip');
+
+let introAnimationId;
+let particles = [];
+
+function initIntroParticles() {
+    if (!introCanvas || !introOverlay) return;
+
+    // فحص إذا كان الزائر قد شاهد الأنترو مسبقاً في هذه الجلسة
+    if (sessionStorage.getItem('samim_intro_seen')) {
+        introOverlay.style.display = 'none';
+        document.body.classList.remove('intro-active');
+        triggerHeroAnimations();
+        return;
+    }
+
+    lenis.stop();
+    const ctx = introCanvas.getContext('2d');
+    const w = introCanvas.width = window.innerWidth;
+    const h = introCanvas.height = window.innerHeight;
+
+    // رسم النص المؤقت في الذاكرة لأخذ إحداثيات البكسلات بدقة
+    const offCanvas = document.createElement('canvas');
+    const offCtx = offCanvas.getContext('2d');
+    offCanvas.width = w;
+    offCanvas.height = h;
+
+    const fontSize = Math.min(w * 0.11, 100);
+    offCtx.fillStyle = '#ffffff';
+    offCtx.font = `700 ${fontSize}px 'IBM Plex Sans Arabic', sans-serif`;
+    offCtx.textAlign = 'center';
+    offCtx.textBaseline = 'middle';
+    
+    // رسم النص الرئيسي والفرعي
+    offCtx.fillText('صَميم ستوديو', w / 2, h / 2 - 15);
+    
+    offCtx.font = `600 ${fontSize * 0.22}px 'Syne', sans-serif`;
+    offCtx.letterSpacing = "6px";
+    offCtx.fillText('SAMIM STUDIO // 2026', w / 2, h / 2 + fontSize * 0.55);
+
+    const imgData = offCtx.getImageData(0, 0, w, h).data;
+    const targetPoints = [];
+    const step = 4; // دقة التقاط النقاط
+
+    for (let y = 0; y < h; y += step) {
+        for (let x = 0; x < w; x += step) {
+            const index = (y * w + x) * 4;
+            if (imgData[index + 3] > 128) {
+                targetPoints.push({ x, y });
+            }
+        }
+    }
+
+    // إنشاء مصفوفة الجزيئات المتناثرة
+    particles = [];
+    const colors = ['#19d563', '#ffffff', '#a8f5c6', '#69e599'];
+
+    for (let i = 0; i < targetPoints.length; i++) {
+        const pt = targetPoints[i];
+        particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            originX: pt.x,
+            originY: pt.y,
+            vx: (Math.random() - 0.5) * 6,
+            vy: (Math.random() - 0.5) * 6,
+            size: Math.random() * 2 + 1,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            alpha: Math.random() * 0.5 + 0.5,
+            ease: Math.random() * 0.04 + 0.03
+        });
+    }
+
+    let startTime = performance.now();
+
+    function renderParticles(now) {
+        ctx.fillStyle = 'rgba(6, 7, 9, 0.25)';
+        ctx.fillRect(0, 0, w, h);
+
+        const elapsed = (now - startTime) / 1000;
+
+        for (let i = 0; i < particles.length; i++) {
+            const p = particles[i];
+
+            // جذب مغناطيسي نحو الحروف
+            p.x += (p.originX - p.x) * p.ease;
+            p.y += (p.originY - p.y) * p.ease;
+
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            ctx.globalAlpha = p.alpha;
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = p.color;
+            ctx.fill();
+        }
+
+        ctx.globalAlpha = 1;
+        ctx.shadowBlur = 0;
+
+        // بعد 3 ثوانٍ من التشكل الكامل، يتم إنهاء الأنترو بانسحاب سينمائي
+        if (elapsed > 3.2) {
+            finishIntro();
+            return;
+        }
+
+        introAnimationId = requestAnimationFrame(renderParticles);
+    }
+
+    introAnimationId = requestAnimationFrame(renderParticles);
+}
+
+function finishIntro() {
+    if (!introOverlay || introOverlay.classList.contains('hidden')) return;
+
+    cancelAnimationFrame(introAnimationId);
+    sessionStorage.setItem('samim_intro_seen', 'true');
+
+    gsap.to(introOverlay, {
+        opacity: 0,
+        scale: 1.04,
+        duration: 0.9,
+        ease: 'power3.inOut',
+        onComplete: () => {
+            introOverlay.classList.add('hidden');
+            document.body.classList.remove('intro-active');
+            lenis.start();
+            triggerHeroAnimations();
+        }
+    });
+}
+
+if (introSkip) {
+    introSkip.addEventListener('click', finishIntro);
+}
+
+// 5. حركات دخول نصوص الواجهة بعد انتهاء الأنترو
+function triggerHeroAnimations() {
     gsap.from('.line-inner', {
-        y: 100,
+        y: 90,
         opacity: 0,
         duration: 1.2,
         stagger: 0.15,
@@ -94,13 +235,17 @@ window.addEventListener('DOMContentLoaded', () => {
         opacity: 0,
         y: 20,
         duration: 1,
-        delay: 0.6,
+        delay: 0.4,
         stagger: 0.1,
         ease: 'power2.out'
     });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    initIntroParticles();
 });
 
-// 5. بيانات دراسات الحالة للمشاريع
+// 6. بيانات دراسات الحالة وإدارة فتح الـ Drawer
 const projectsData = {
     "project-1": {
         title: "هوية روح وريحان المتكاملة",
@@ -141,14 +286,13 @@ const projectsData = {
     }
 };
 
-// 6. إدارة عارض دراسات الحالة المنبثق
 const drawer = document.getElementById('projectDrawer');
 const drawerClose = document.getElementById('drawerClose');
 const drawerContent = document.getElementById('drawerContent');
 
-document.querySelectorAll('.project-row').forEach(row => {
-    row.addEventListener('click', () => {
-        const id = row.getAttribute('data-id');
+document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const id = card.getAttribute('data-id');
         const data = projectsData[id];
         if (!data) return;
 
@@ -165,7 +309,9 @@ document.querySelectorAll('.project-row').forEach(row => {
             </div>
         `;
 
+        drawerContent.scrollTop = 0;
         drawer.classList.add('open');
+        document.body.classList.add('drawer-active');
         lenis.stop();
     });
 });
@@ -173,11 +319,12 @@ document.querySelectorAll('.project-row').forEach(row => {
 if (drawerClose) {
     drawerClose.addEventListener('click', () => {
         drawer.classList.remove('open');
+        document.body.classList.remove('drawer-active');
         lenis.start();
     });
 }
 
-// 7. نسخ الإيميل الثابت بنقرة زر
+// 7. نسخ الإيميل
 const emailLink = document.getElementById('studioEmail');
 const copyBtn = document.getElementById('copyEmailBtn');
 const copyNotice = document.getElementById('copyNotice');

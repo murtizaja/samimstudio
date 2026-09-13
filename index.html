@@ -6,7 +6,6 @@
     <title>أستوديو صَميم | Samim Studio</title>
     <meta name="description" content="بوتيك استوديو إبداعي مستقل، نُعنى بصياغة وتطوير الهويات البصرية الاستراتيجية والأنظمة التيبوغرافية الفاخرة.">
     
-    <!-- أيقونة المتصفح -->
     <link rel="icon" type="image/png" href="favicon.png">
 
     <!-- الخطوط -->
@@ -14,13 +13,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
     
-    <!-- الأنماط والمكتبات -->
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
-<body>
+<body class="intro-active">
+
+    <!-- شاشة الأنترو السينمائية للجزيئات المتشكلة -->
+    <div class="intro-overlay" id="introOverlay">
+        <canvas id="introCanvas"></canvas>
+        <div class="intro-skip" id="introSkip">تخطي ✕</div>
+    </div>
 
     <!-- مؤشر الماوس التفاعلي -->
     <div class="custom-cursor" id="cursor">
@@ -29,13 +33,14 @@
 
     <!-- شريط التنقل العلوي -->
     <nav class="navbar">
-        <!-- حاوية الشعار التفاعلية 3D -->
-        <a href="#" class="brand logo-3d-wrap" id="logo3d" data-cursor="link">
+        <a href="index.html" class="brand logo-3d-wrap" id="logo3d" data-cursor="link">
             <div class="logo-3d-glow"></div>
             <img src="logo.svg" alt="أستوديو صَميم" class="site-logo logo-3d-layer">
         </a>
         <div class="nav-right">
-            <span class="studio-status">متاح للمشاريع الجديدة 2026</span>
+            <span class="studio-status">متاح للمشاريع 2026</span>
+            <a href="shop.html" class="nav-sub-link" data-cursor="link">دُكّان صَميم ↗</a>
+            <a href="broadcast.html" class="nav-sub-link" data-cursor="link">أثير صَميم ↗</a>
             <a href="https://wa.me/by.samim" target="_blank" class="btn-primary" data-cursor="link">ابدأ مشروعك ↗</a>
         </div>
     </nav>
@@ -53,7 +58,6 @@
             <span class="line"><span class="line-inner accent-text">ودقة التطبيق.</span></span>
         </h1>
 
-        <!-- صورة السلوغن SVG المفرغة -->
         <div class="slogan-visual-wrap">
             <img src="slogan.svg" alt="شعار أستوديو صَميم" class="slogan-img">
         </div>
@@ -69,7 +73,7 @@
         </div>
     </header>
 
-    <!-- شريط شعارات العملاء المتحرك بدون انقطاع -->
+    <!-- شريط العملاء المتحرك -->
     <div class="client-marquee-container">
         <div class="marquee-title">
             <span>وثقوا بنا</span>
@@ -78,7 +82,6 @@
         </div>
         <div class="marquee-viewport">
             <div class="marquee-track">
-                <!-- الدفعة الأولى (13 شعار) -->
                 <div class="logo-item"><img src="logos/client-1.svg" alt="عميل"></div>
                 <div class="logo-item"><img src="logos/client-2.svg" alt="عميل"></div>
                 <div class="logo-item"><img src="logos/client-3.svg" alt="عميل"></div>
@@ -93,7 +96,6 @@
                 <div class="logo-item"><img src="logos/client-12.svg" alt="عميل"></div>
                 <div class="logo-item"><img src="logos/client-13.svg" alt="عميل"></div>
 
-                <!-- الدفعة الثانية لتأمين اتصال الحركة ومنع أي فراغ -->
                 <div class="logo-item"><img src="logos/client-1.svg" alt="عميل"></div>
                 <div class="logo-item"><img src="logos/client-2.svg" alt="عميل"></div>
                 <div class="logo-item"><img src="logos/client-3.svg" alt="عميل"></div>
@@ -111,65 +113,77 @@
         </div>
     </div>
 
-    <!-- شبكة المشاريع التفاعلية -->
+    <!-- شبكة المشاريع بنظام البطاقات -->
     <section class="works-section" id="works">
         <div class="section-head">
             <h2 class="section-label">01 / مشاريع مختارة</h2>
             <span class="section-count">( 04 )</span>
         </div>
 
-        <div class="projects-container">
-            <article class="project-row" data-id="project-1" data-cursor="project">
-                <div class="row-num">01</div>
-                <div class="row-meta">
-                    <h3 class="row-title">روح وريحان</h3>
-                    <span class="row-cat">هوية بصرية متكاملة، قطاع الضيافة والمطاعم</span>
-                </div>
-                <div class="row-year">2026</div>
-                <div class="row-preview">
+        <div class="projects-grid">
+            <article class="project-card" data-id="project-1" data-cursor="project">
+                <div class="card-media">
                     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="روح وريحان">
+                    <div class="card-overlay-badge">دراسة حالة ↗</div>
+                </div>
+                <div class="card-info">
+                    <div class="card-header-row">
+                        <span class="card-num">01</span>
+                        <span class="card-year">2026</span>
+                    </div>
+                    <h3 class="card-title">روح وريحان</h3>
+                    <p class="card-cat">هوية بصرية متكاملة، قطاع الضيافة والمطاعم</p>
                 </div>
             </article>
 
-            <article class="project-row" data-id="project-2" data-cursor="project">
-                <div class="row-num">02</div>
-                <div class="row-meta">
-                    <h3 class="row-title">قلادة الفضية</h3>
-                    <span class="row-cat">صياغة العلامة، أنظمة التغليف، طباعة فاخرة</span>
-                </div>
-                <div class="row-year">2026</div>
-                <div class="row-preview">
+            <article class="project-card" data-id="project-2" data-cursor="project">
+                <div class="card-media">
                     <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=1200&q=80" alt="قلادة">
+                    <div class="card-overlay-badge">دراسة حالة ↗</div>
+                </div>
+                <div class="card-info">
+                    <div class="card-header-row">
+                        <span class="card-num">02</span>
+                        <span class="card-year">2026</span>
+                    </div>
+                    <h3 class="card-title">قلادة الفضية</h3>
+                    <p class="card-cat">صياغة العلامة، أنظمة التغليف، طباعة فاخرة</p>
                 </div>
             </article>
 
-            <article class="project-row" data-id="project-3" data-cursor="project">
-                <div class="row-num">03</div>
-                <div class="row-meta">
-                    <h3 class="row-title">صاحب ماركة</h3>
-                    <span class="row-cat">إعادة صياغة الهوية، توجيه فني وأزياء</span>
-                </div>
-                <div class="row-year">2025</div>
-                <div class="row-preview">
+            <article class="project-card" data-id="project-3" data-cursor="project">
+                <div class="card-media">
                     <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80" alt="صاحب ماركة">
+                    <div class="card-overlay-badge">دراسة حالة ↗</div>
+                </div>
+                <div class="card-info">
+                    <div class="card-header-row">
+                        <span class="card-num">03</span>
+                        <span class="card-year">2025</span>
+                    </div>
+                    <h3 class="card-title">صاحب ماركة</h3>
+                    <p class="card-cat">إعادة صياغة الهوية، توجيه فني وأزياء</p>
                 </div>
             </article>
 
-            <article class="project-row" data-id="project-4" data-cursor="project">
-                <div class="row-num">04</div>
-                <div class="row-meta">
-                    <h3 class="row-title">حاء نون</h3>
-                    <span class="row-cat">تصميم وتجليد دفاتر حرفية، مطبوعات فاخرة</span>
-                </div>
-                <div class="row-year">2025</div>
-                <div class="row-preview">
+            <article class="project-card" data-id="project-4" data-cursor="project">
+                <div class="card-media">
                     <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80" alt="حاء نون">
+                    <div class="card-overlay-badge">دراسة حالة ↗</div>
+                </div>
+                <div class="card-info">
+                    <div class="card-header-row">
+                        <span class="card-num">04</span>
+                        <span class="card-year">2025</span>
+                    </div>
+                    <h3 class="card-title">حاء نون</h3>
+                    <p class="card-cat">تصميم وتجليد دفاتر حرفية، مطبوعات فاخرة</p>
                 </div>
             </article>
         </div>
     </section>
 
-    <!-- تعريف الاستوديو والفلسفة -->
+    <!-- بيان وفلسفة الأستوديو -->
     <section class="manifesto-section">
         <div class="section-head">
             <h2 class="section-label">02 / عن صَميم</h2>
@@ -209,7 +223,7 @@
         <div class="drawer-header">
             <button class="drawer-close" id="drawerClose" data-cursor="link">إغلاق ✕</button>
         </div>
-        <div class="drawer-scroll" id="drawerContent"></div>
+        <div class="drawer-scroll" id="drawerContent" data-lenis-prevent></div>
     </div>
 
     <script src="script.js"></script>

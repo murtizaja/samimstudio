@@ -1,0 +1,377 @@
+:root {
+    --cherry-deep: #16080b;          /* أحمر كرزي عميق وفاحم للخلفية */
+    --cherry-accent: #a31d38;        /* أحمر كرزي حي ونابض */
+    --cherry-glow: #e62e54;          /* وهج كرزي سينمائي للشاشة */
+    --off-white: #f5f0eb;            /* أوف وايت دافئ وكريمي للنصوص */
+    --off-white-muted: #ab9fa3;      /* أوف وايت خافت للنصوص الثانوية */
+    --crt-metal: #231217;            /* معدن التلفاز الكرزي الداكن */
+    --crt-border: rgba(245, 240, 235, 0.12);
+    --font-main: 'IBM Plex Sans Arabic', sans-serif;
+    --font-en: 'Syne', sans-serif;
+    --font-mono: 'VT323', monospace;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body.broadcast-body {
+    background-color: var(--cherry-deep);
+    color: var(--off-white);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    direction: rtl;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* مؤشر الماوس */
+.custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 14px; height: 14px;
+    background: var(--off-white);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease, background 0.3s ease;
+    display: flex; align-items: center; justify-content: center;
+}
+.cursor-text {
+    display: none; font-size: 11px; color: var(--cherry-deep); font-weight: 700;
+}
+.custom-cursor.active-hover {
+    width: 45px; height: 45px; background: rgba(230, 46, 84, 0.4);
+}
+.custom-cursor.active-project {
+    width: 80px; height: 80px; background: var(--cherry-accent);
+}
+.custom-cursor.active-project .cursor-text { display: block; color: #fff; }
+
+/* شريط النافبار */
+.cherry-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.6rem 6%;
+    border-bottom: 1px solid var(--crt-border);
+    position: sticky;
+    top: 0;
+    background: rgba(22, 8, 11, 0.9);
+    backdrop-filter: blur(14px);
+    z-index: 100;
+}
+.site-logo { height: 38px; width: auto; filter: brightness(1.2); }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+
+.cherry-nav-link {
+    color: var(--off-white-muted) !important;
+    text-decoration: none !important;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+.cherry-nav-link:hover { color: var(--off-white) !important; }
+
+.btn-cherry-action {
+    background: var(--cherry-accent);
+    color: var(--off-white) !important;
+    text-decoration: none !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 99px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 15px rgba(163, 29, 56, 0.4);
+}
+.btn-cherry-action:hover {
+    background: var(--cherry-glow);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(230, 46, 84, 0.5);
+}
+
+/* مقدمة الأثير */
+.broadcast-hero {
+    padding: 5.5rem 6% 3rem;
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto;
+}
+.broadcast-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 1.05rem;
+    letter-spacing: 2px;
+    color: var(--cherry-glow);
+    border: 1px solid rgba(230, 46, 84, 0.3);
+    background: rgba(230, 46, 84, 0.08);
+    padding: 0.35rem 1rem;
+    border-radius: 99px;
+    margin-bottom: 1.5rem;
+}
+.broadcast-title {
+    font-size: 3.5vw;
+    color: var(--off-white);
+    margin-bottom: 1.2rem;
+    font-weight: 600;
+}
+.broadcast-intro {
+    font-size: 1.15rem;
+    color: var(--off-white-muted);
+    line-height: 1.8;
+}
+
+/* مجسم التلفاز CRT التناظري */
+.crt-broadcast-zone {
+    padding: 2rem 6% 8rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.vintage-crt-chassis {
+    background: var(--crt-metal);
+    border: 4px solid #3d1b23;
+    border-radius: 28px;
+    padding: 2.2rem;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.95), inset 0 2px 5px rgba(245, 240, 235, 0.1);
+}
+
+.crt-housing-grid {
+    display: grid;
+    grid-template-columns: 1fr 180px;
+    gap: 2rem;
+    background: #0f0507;
+    border: 2px solid #200c11;
+    border-radius: 20px;
+    padding: 1.5rem;
+}
+
+/* إطار الشاشة والزجاج */
+.crt-monitor-frame {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #050102;
+    border: 3px solid #36151c;
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.95);
+    aspect-ratio: 16 / 10;
+}
+
+.screen-glass {
+    width: 100%; height: 100%; position: relative; overflow: hidden;
+}
+
+/* خطوط المسح والوهج الكرزي */
+.crt-scanlines {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.45) 50%);
+    background-size: 100% 4px;
+    z-index: 5; pointer-events: none;
+}
+.crt-cherry-glow {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    box-shadow: inset 0 0 70px rgba(230, 46, 84, 0.2);
+    pointer-events: none; z-index: 6;
+}
+
+/* تشويش الجليتش التلفزيوني عند تغيير القناة */
+.crt-static-glitch {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(0deg, var(--cherry-glow), var(--cherry-glow) 2px, #000 3px, #000 6px);
+    opacity: 0; pointer-events: none; z-index: 7;
+    transition: opacity 0.08s ease;
+}
+.crt-static-glitch.active { opacity: 0.9; }
+
+/* بيانات الشاشة العلوية OSD */
+.crt-osd-top {
+    position: absolute; top: 1.2rem; left: 1.2rem; right: 1.2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 8; font-family: var(--font-mono); font-size: 1.15rem;
+    color: var(--cherry-glow); text-shadow: 0 0 10px rgba(230, 46, 84, 0.8);
+}
+.live-pill { display: flex; align-items: center; gap: 0.6rem; }
+.cherry-dot {
+    width: 10px; height: 10px; background: var(--cherry-glow);
+    border-radius: 50%; box-shadow: 0 0 10px var(--cherry-glow);
+    animation: cherryBlink 1s infinite alternate;
+}
+@keyframes cherryBlink { 0% { opacity: 0.3; } 100% { opacity: 1; } }
+
+/* حاوية الموشن الحي الدائم بالكانفاس */
+.canvas-visual-wrapper {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 2;
+}
+#liveMotionCanvas { width: 100%; height: 100%; display: block; }
+
+/* بطاقة المقال التفاعلية داخل الشاشة */
+.interactive-essay-card {
+    position: absolute;
+    bottom: 2.4rem;
+    right: 1.5rem;
+    left: 1.5rem;
+    z-index: 10;
+}
+.essay-card-inner {
+    background: rgba(22, 8, 11, 0.85);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(245, 240, 235, 0.2);
+    border-radius: 12px;
+    padding: 1.2rem 1.6rem;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.interactive-essay-card:hover .essay-card-inner {
+    transform: translateY(-5px);
+    border-color: var(--cherry-glow);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 25px rgba(230, 46, 84, 0.3);
+}
+
+.essay-meta-row {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 0.4rem;
+}
+.essay-tag {
+    font-size: 0.75rem; color: var(--cherry-glow); font-weight: 600;
+}
+.click-hint {
+    font-size: 0.8rem; color: var(--off-white); font-weight: 600;
+    text-decoration: underline;
+}
+.essay-card-inner h3 {
+    font-size: 1.25rem; color: var(--off-white); margin-bottom: 0.3rem;
+}
+.essay-card-inner p {
+    font-size: 0.88rem; color: var(--off-white-muted);
+}
+
+.crt-osd-bottom {
+    position: absolute; bottom: 0.5rem; left: 0; width: 100%;
+    font-family: var(--font-mono); font-size: 0.95rem;
+    color: rgba(245, 240, 235, 0.4); padding: 0 1.2rem;
+    white-space: nowrap; overflow: hidden; z-index: 8;
+}
+
+/* لوحة الأزرار الجانبية */
+.crt-tuner-panel {
+    display: flex; flex-direction: column; justify-content: space-between;
+    align-items: center; border-right: 2px solid #200c11; padding-right: 1.5rem;
+}
+.speaker-slits { display: flex; flex-direction: column; gap: 6px; width: 100%; }
+.speaker-slits span { display: block; height: 3px; background: #2f121a; border-radius: 2px; }
+
+.tuner-selector { width: 100%; text-align: center; }
+.panel-label {
+    font-family: var(--font-en); font-size: 0.65rem; letter-spacing: 1px;
+    color: var(--off-white-muted); display: block; margin-bottom: 0.8rem;
+}
+.tuner-buttons { display: flex; flex-direction: column; gap: 0.6rem; width: 100%; }
+
+.ch-btn {
+    background: #250e14;
+    border: 1px solid #451b25;
+    color: var(--off-white-muted);
+    font-family: var(--font-en);
+    font-weight: 700; font-size: 0.85rem;
+    padding: 0.65rem; border-radius: 6px;
+    transition: all 0.2s ease;
+}
+.ch-btn:hover { color: var(--off-white); border-color: var(--cherry-glow); }
+.ch-btn.active {
+    background: var(--cherry-accent);
+    color: var(--off-white);
+    border-color: var(--cherry-glow);
+    box-shadow: 0 0 18px rgba(230, 46, 84, 0.45);
+}
+
+.tuner-knobs { display: flex; gap: 1.2rem; }
+.knob-unit { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; }
+.rotary-knob {
+    width: 38px; height: 38px;
+    background: radial-gradient(circle, #3d1b23, #1c0b0f);
+    border: 2px solid #582430; border-radius: 50%;
+    position: relative; transition: transform 0.25s ease;
+}
+.rotary-knob::before {
+    content: ''; position: absolute; top: 4px; left: 50%; width: 3px; height: 8px;
+    background: var(--cherry-glow); transform: translateX(-50%); border-radius: 2px;
+}
+.power-knob::before { background: var(--off-white); }
+.knob-label { font-family: var(--font-en); font-size: 0.6rem; color: var(--off-white-muted); }
+.crt-brand-stamp { font-family: var(--font-en); font-size: 0.6rem; color: #582430; }
+
+/* نافذة قراءة المقال الكامل المنبثقة Drawer */
+.essay-reader-drawer {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: #110507; z-index: 100000;
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    display: flex; flex-direction: column;
+}
+.essay-reader-drawer.open { transform: translateY(0); }
+
+.drawer-top-bar {
+    height: 80px; padding: 0 6%;
+    display: flex; justify-content: space-between; align-items: center;
+    border-bottom: 1px solid var(--crt-border);
+    background: rgba(17, 5, 7, 0.95); backdrop-filter: blur(10px);
+}
+.drawer-ch-info { font-family: var(--font-mono); font-size: 1.1rem; color: var(--cherry-glow); }
+.drawer-close-btn {
+    background: none; border: 1px solid var(--crt-border); color: var(--off-white);
+    padding: 0.5rem 1.6rem; border-radius: 99px; font-family: var(--font-main);
+    font-size: 0.9rem; transition: all 0.2s ease;
+}
+.drawer-close-btn:hover {
+    background: var(--cherry-accent); border-color: var(--cherry-glow); color: #fff;
+}
+
+.drawer-article-body {
+    flex: 1; overflow-y: auto; overflow-x: hidden;
+    -webkit-overflow-scrolling: touch; overscroll-behavior: contain;
+    padding: 5rem 12% 8rem; max-width: 950px; margin: 0 auto;
+}
+.article-header h2 { font-size: 2.8vw; color: var(--off-white); margin-bottom: 1.2rem; }
+.article-meta-lead {
+    font-size: 1.25rem; color: var(--cherry-glow); line-height: 1.8;
+    margin-bottom: 3rem; border-bottom: 1px solid var(--crt-border); padding-bottom: 2rem;
+}
+.article-content p {
+    font-size: 1.1rem; color: var(--off-white-muted); line-height: 2; margin-bottom: 2rem;
+}
+.article-quote {
+    background: rgba(163, 29, 56, 0.1); border-right: 3px solid var(--cherry-accent);
+    padding: 1.5rem 2rem; border-radius: 8px; margin: 3rem 0;
+    font-size: 1.3rem; color: var(--off-white); font-weight: 500;
+}
+
+/* فوتر الأثير */
+.cherry-footer {
+    border-top: 1px solid var(--crt-border); padding: 3rem 6%; background: #0b0305;
+}
+.cherry-footer .footer-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.85rem; color: var(--off-white-muted);
+}
+.cherry-footer .links { display: flex; gap: 2rem; }
+.cherry-footer .links a {
+    color: var(--off-white-muted); text-decoration: none; transition: color 0.2s;
+}
+.cherry-footer .links a:hover { color: var(--cherry-glow); }
+
+@media (max-width: 900px) {
+    .broadcast-title { font-size: 2.4rem; }
+    .crt-housing-grid { grid-template-columns: 1fr; }
+    .crt-tuner-panel {
+        border-right: none; border-top: 2px solid #200c11;
+        padding-right: 0; padding-top: 1.5rem; gap: 1.5rem;
+    }
+    .tuner-buttons { flex-direction: row; justify-content: center; }
+    .ch-btn { padding: 0.5rem 1.5rem; }
+    .speaker-slits { display: none; }
+    .drawer-article-body { padding: 3rem 6% 6rem; }
+    .article-header h2 { font-size: 2rem; }
+}

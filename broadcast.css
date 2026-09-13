@@ -15,7 +15,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none;
 }
 
 body.broadcast-body {
@@ -26,6 +25,9 @@ body.broadcast-body {
     direction: rtl;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    /* تثبيت عرض الكمبيوتر دائماً */
+    width: 100%;
+    min-width: 1280px;
 }
 
 /* مؤشر الماوس */
@@ -255,7 +257,7 @@ body.broadcast-body {
     white-space: nowrap; overflow: hidden; z-index: 8;
 }
 
-/* لوحة الأزرار الجانبية */
+/* لوحة الأزرار الجانبية (ثابتة كأعمدة) */
 .crt-tuner-panel {
     display: flex; flex-direction: column; justify-content: space-between;
     align-items: center; border-right: 2px solid #200c11; padding-right: 1.5rem;
@@ -278,6 +280,7 @@ body.broadcast-body {
     font-weight: 700; font-size: 0.85rem;
     padding: 0.65rem; border-radius: 6px;
     transition: all 0.2s ease;
+    cursor: pointer;
 }
 .ch-btn:hover { color: var(--off-white); border-color: var(--cherry-glow); }
 .ch-btn.active {
@@ -294,6 +297,7 @@ body.broadcast-body {
     background: radial-gradient(circle, #3d1b23, #1c0b0f);
     border: 2px solid #582430; border-radius: 50%;
     position: relative; transition: transform 0.25s ease;
+    cursor: pointer;
 }
 .rotary-knob::before {
     content: ''; position: absolute; top: 4px; left: 50%; width: 3px; height: 8px;
@@ -324,6 +328,7 @@ body.broadcast-body {
     background: none; border: 1px solid var(--crt-border); color: var(--off-white);
     padding: 0.5rem 1.6rem; border-radius: 99px; font-family: var(--font-main);
     font-size: 0.9rem; transition: all 0.2s ease;
+    cursor: pointer;
 }
 .drawer-close-btn:hover {
     background: var(--cherry-accent); border-color: var(--cherry-glow); color: #fff;
@@ -361,17 +366,3 @@ body.broadcast-body {
     color: var(--off-white-muted); text-decoration: none; transition: color 0.2s;
 }
 .cherry-footer .links a:hover { color: var(--cherry-glow); }
-
-@media (max-width: 900px) {
-    .broadcast-title { font-size: 2.4rem; }
-    .crt-housing-grid { grid-template-columns: 1fr; }
-    .crt-tuner-panel {
-        border-right: none; border-top: 2px solid #200c11;
-        padding-right: 0; padding-top: 1.5rem; gap: 1.5rem;
-    }
-    .tuner-buttons { flex-direction: row; justify-content: center; }
-    .ch-btn { padding: 0.5rem 1.5rem; }
-    .speaker-slits { display: none; }
-    .drawer-article-body { padding: 3rem 6% 6rem; }
-    .article-header h2 { font-size: 2rem; }
-}
